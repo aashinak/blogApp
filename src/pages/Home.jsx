@@ -9,13 +9,17 @@ import { useSelector } from "react-redux"
 function Home() {
   const authStatus = useSelector((state) => state.auth.status)
   const [posts, setPosts] = useState([])
+
+
   useEffect(() => {
-     appwriteService.getPosts([]).then((posts) => {
+     appwriteService.getPosts().then((posts) => {
       if(posts){
         setPosts(posts.documents)
       }
      })
   },[])
+
+
   if (posts.length === 0 && authStatus) {
     return (
       <div className="w-full py-8">
